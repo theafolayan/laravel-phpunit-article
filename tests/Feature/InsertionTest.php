@@ -13,10 +13,14 @@ class InsertionTest extends TestCase
      *
      * @return void
      */
-    public function testExample()
+    public function test_that_a_task_can_be_added()
     {
-        $response = $this->get('/');
-
+        $this->withoutExceptionHandling();
+        $response = $this->post('/task/create', [
+            'name' => 'Write Article',
+            'description' => 'Write and publish an article'
+        ]);
         $response->assertStatus(200);
+        $this->assertTrue(count(Task::all()) > 0);
     }
 }
