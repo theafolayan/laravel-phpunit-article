@@ -4,7 +4,7 @@ namespace Database\Factories;
 
 use App\Models\Task;
 use Illuminate\Database\Eloquent\Factories\Factory;
-
+// use Faker\Generator as Faker;
 class TaskFactory extends Factory
 {
     /**
@@ -22,7 +22,9 @@ class TaskFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'name' => $this->faker->sentence(4),
+            'description' => $this->faker->sentence(20),
+            'completed' => random_int(0, 1)
         ];
     }
 }

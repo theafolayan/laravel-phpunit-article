@@ -11,17 +11,17 @@ use Tests\TestCase;
 
 class InsertionTest extends TestCase
 {
-    use DatabaseMigrations;
+    use DatabaseMigrations, RefreshDatabase;
     /**
      * A basic feature test example.
      *
      * @return void
      */
-    public function setup(): void
-    {
-        parent::setUp();
-        Artisan::call('migrate:refresh');
-    }
+    // public function setup(): void
+    // {
+    //     parent::setUp();
+    //     // Artisan::call('migrate:refresh');
+    // }
     public function test_that_a_task_can_be_added()
     {
         $this->withoutExceptionHandling();
@@ -29,7 +29,7 @@ class InsertionTest extends TestCase
             'name' => 'Write Article',
             'description' => 'Write and publish an article'
         ]);
-        $response->assertStatus(200);
+        $response->assertStatus(201);
         $this->assertTrue(count(Task::all()) > 0);
     }
 }
