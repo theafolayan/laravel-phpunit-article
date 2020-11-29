@@ -20,3 +20,8 @@ Route::get('/', function () {
 Route::post('task/create', function(){
     return(' Hello!');
 });
+
+Route::get(
+    '/tasks/{task}',
+    'TaskController@show'
+);
