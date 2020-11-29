@@ -17,11 +17,5 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::post('task/create', function(){
-    return(' Hello!');
-});
 
-Route::get(
-    '/tasks/{task}',
-    'TaskController@show'
-);
+
