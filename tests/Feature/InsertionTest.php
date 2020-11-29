@@ -35,13 +35,15 @@ class InsertionTest extends TestCase
 
     public function test_that_a_task_can_be_completed()
     {
-        $this->withoutExceptionHandling();
+       $this->withoutExceptionHandling();
         $task_id = Task::create([
             'name' => 'Example Name',
             'description' => 'Demo dscription'
-
-        ]);
-        $response = $this->patch("api/tasks/.$task_id/complete");
-        $this->assertTrue(Task::findOrFail($task_id)->completed === 1);
+        ])->id;
+        $response = $this->patch("/api/tasks/$task_id/complete"); //send a patch to complete the created task
+        $this->assertTrue(Task::findOrFail($task_id)->is_completed() == 1);
+        $response->assertJson([
+            'message' => 'task successfully marked as updated'
+        ], true);
     }
 }

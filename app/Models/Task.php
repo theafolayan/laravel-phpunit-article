@@ -14,5 +14,9 @@ class Task extends Model
         $this->completed = 1;
         $this->save();
     }
+    public function is_completed()
+    {
+        return $this->completed;
+    }
 
 }
