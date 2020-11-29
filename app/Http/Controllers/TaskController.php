@@ -29,7 +29,7 @@ class TaskController extends Controller
         Task::create($request->all());
         return response()->json([
             'message' => 'task created successfully'
-        ]);
+        ],201);
     }
 
     /**
@@ -69,7 +69,7 @@ class TaskController extends Controller
     public function mark_task_as_completed(Task $task)
     {
         $task->mark_task_as_completed();
-        $task->delete();
+        // $task->delete();
         return response()->json([
             'message' => 'task successfully marked as updated'
         ], 401);

@@ -9,5 +9,10 @@ class Task extends Model
 {
     use HasFactory;
     protected $fillable = ['name', 'description', 'status'];
-    
+    public function mark_task_as_completed()
+    {
+        $this->completed = 1;
+        $this->save();
+    }
+
 }

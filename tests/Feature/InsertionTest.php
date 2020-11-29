@@ -25,11 +25,23 @@ class InsertionTest extends TestCase
     public function test_that_a_task_can_be_added()
     {
         $this->withoutExceptionHandling();
-        $response = $this->post('/task/create', [
+        $response = $this->post('/api/tasks/create', [
             'name' => 'Write Article',
             'description' => 'Write and publish an article'
         ]);
         $response->assertStatus(201);
         $this->assertTrue(count(Task::all()) > 0);
+    }
+
+    public function test_that_a_task_can_be_completed()
+    {
+        $this->withoutExceptionHandling();
+        $task_id = Task::create([
+            'name' => 'Example Name',
+            'description' => 'Demo dscription'
+
+        ]);
+        $response = $this->patch("api/tasks/.$task_id/complete");
+        $this->assertTrue(Task::findOrFail($task_id)->completed === 1);
     }
 }

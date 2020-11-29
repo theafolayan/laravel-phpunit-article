@@ -19,6 +19,12 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get(
-    '/tasks/{task}', 'TaskController@show'
-);
+
+Route::post('/task/create', 'TaskController@create_task');
+
+Route::group(['prefix' => 'tasks'], function () {
+    Route::get('/{task}','TaskController@show');
+    Route::post('/create', 'TaskController@create_task');
+    Route::patch('{task}/complete', 'TaskController@mark_task_as_completed');
+
+});
