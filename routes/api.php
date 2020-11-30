@@ -20,8 +20,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 
-Route::post('/task/create', 'TaskController@create_task');
-
 Route::group(['prefix' => 'tasks'], function () {
     Route::get('/{task}','TaskController@show');
     Route::post('/create', 'TaskController@create_task');
