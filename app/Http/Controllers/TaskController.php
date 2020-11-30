@@ -45,7 +45,8 @@ class TaskController extends Controller
                 'message' => 'task found',
                 'data' => $task
             ]);
-        } else{
+        }
+        else{
             return response()->json([
                 'message' => 'specified task does not exist',
             ], 404);
@@ -58,20 +59,19 @@ class TaskController extends Controller
      * @param  \App\Models\Task  $task
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Task $task)
+    public function destroy($task)
     {
-        $task->delete();
+        $task_to_be_deleted = Task::findOrFail($task);
+        $task_to_be_deleted->delete();
         return response()->json([
             'message' => 'task deleted successfully'
-        ], 401);
+        ], 410);
     }
-
     public function mark_task_as_completed(Task $task)
     {
         $task->mark_task_as_completed();
-        // $task->delete();
         return response()->json([
             'message' => 'task successfully marked as updated'
-        ], 401);
+        ], 200);
     }
 }
