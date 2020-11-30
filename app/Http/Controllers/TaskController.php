@@ -69,9 +69,9 @@ class TaskController extends Controller
     }
     public function mark_task_as_completed(Task $task)
     {
-        $task->mark_task_as_completed();
+        $task->mark_task_as_completed(); //calls the mark_task_as_complete method we created in the App/Models/Task.php file
         return response()->json([
             'message' => 'task successfully marked as updated'
-        ], 200);
+        ], 200); //send a json response with the 200 status code
     }
 }
