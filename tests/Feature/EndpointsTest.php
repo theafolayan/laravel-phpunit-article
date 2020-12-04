@@ -9,7 +9,7 @@ use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Support\Facades\Artisan;
 use Tests\TestCase;
 
-class InsertionTest extends TestCase
+class EndpointsTest extends TestCase
 {
     use DatabaseMigrations, RefreshDatabase;
     /**

@@ -26,7 +26,7 @@ class TaskController extends Controller
      */
     public function create_task(Request $request)
     {
-        Task::create($request->all());
+        Task::create($request->all()); // create a task
         return response()->json([
             'message' => 'task created successfully'
         ],201);
